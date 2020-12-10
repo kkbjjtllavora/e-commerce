@@ -1,24 +1,18 @@
-import logo from './logo.svg';
-import './App.css';
+import { createUseStyles } from 'react-jss';
+import Grid, { GRID_ROW, COL_1_OF_2, COL_1_OF_3 } from './components/layout/Grid';
+
+const useStyles = createUseStyles({
+  
+});
 
 function App() {
+  const classes = useStyles();
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Grid variety={GRID_ROW}>
+      <Grid variety={COL_1_OF_2}>Col 1 of 2</Grid>
+      <Grid variety={COL_1_OF_2}>Col 1 of 2</Grid>
+    </Grid>
   );
 }
 
