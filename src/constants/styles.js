@@ -1,9 +1,9 @@
 export const DEFAULT_FONT_SIZE = '1.6rem';
 
 // GRID SIZES
-export const MAX_WIDTH           = '105rem';
-export const GUTTER_VERTICAL     = '4rem';
-export const GUTTER_HORIZONTAL   = '6rem';
+export const MAX_WIDTH           = '120rem';
+export const GUTTER_VERTICAL     = '1.5rem';
+export const GUTTER_HORIZONTAL   = '1.5rem';
 
 export const U_ALIGN_CENTER         = 'center';
 export const U_MARGIN_BOTTOM_SMALL  = '1.5rem';
