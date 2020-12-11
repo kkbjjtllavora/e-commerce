@@ -1,42 +1,42 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { createUseCSS } from '../../utils/CSS';
+import React from "react";
+import PropTypes from "prop-types";
+import { createUseCSS } from "../../utils/CSS";
 import {
     MAX_WIDTH,
     GUTTER_HORIZONTAL,
     GUTTER_VERTICAL,
-} from '../../constants/styles';
+} from "../../constants/styles";
 
-export const GRID_ROW   = 'grid-row';
-export const COL_1_OF_2 = 'col-1-of-2';
-export const COL_1_OF_3 = 'col-1-of-3';
-export const COL_2_OF_3 = 'col-2-of-3';
-export const COL_1_OF_4 = 'col-1-of-4';
-export const COL_2_OF_4 = 'col-2-of-4';
-export const COL_3_OF_4 = 'col-3-of-4';
+export const GRID_ROW = "grid-row";
+export const COL_1_OF_2 = "col-1-of-2";
+export const COL_1_OF_3 = "col-1-of-3";
+export const COL_2_OF_3 = "col-2-of-3";
+export const COL_1_OF_4 = "col-1-of-4";
+export const COL_2_OF_4 = "col-2-of-4";
+export const COL_3_OF_4 = "col-3-of-4";
 
 const BASE_COLUMN_STYLE = {
-    float: 'left',
+    float: "left",
 
-    '&:not(:last-child)': {
+    "&:not(:last-child)": {
         marginRight: GUTTER_HORIZONTAL,
-    }
-}
+    },
+};
 
 const useCSS = createUseCSS({
     [GRID_ROW]: {
         maxWidth: MAX_WIDTH,
-        margin: '0 auto',
+        margin: "0 auto",
 
-        '&:not(:last-child)': {
+        "&:not(:last-child)": {
             marginBottom: GUTTER_VERTICAL,
         },
 
-        '&::after': {
+        "&::after": {
             content: '""',
-            display: 'table',
-            clear: 'both',
-        }
+            display: "table",
+            clear: "both",
+        },
     },
 
     [COL_1_OF_2]: {
@@ -67,21 +67,14 @@ const useCSS = createUseCSS({
     [COL_3_OF_4]: {
         ...BASE_COLUMN_STYLE,
         width: `calc(3 * ((100% - 3 * ${GUTTER_HORIZONTAL}) / 4) + ${GUTTER_HORIZONTAL} * 2)`,
-    }
+    },
 });
 
-const Grid = ({
-    variety = GRID_ROW,
-    children,
-}) => {
+const Grid = ({ variety = GRID_ROW, children }) => {
     const classes = useCSS();
 
-    return (
-        <div className={classes[variety]}>
-            {children}
-        </div>
-    );
-}
+    return <div className={classes[variety]}>{children}</div>;
+};
 
 export default Grid;
 
@@ -93,7 +86,7 @@ Grid.propTypes = {
         COL_2_OF_3,
         COL_1_OF_4,
         COL_2_OF_4,
-        COL_3_OF_4
+        COL_3_OF_4,
     ]),
     children: PropTypes.node,
-}
+};
