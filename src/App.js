@@ -1,51 +1,80 @@
-import { Fragment, useEffect } from "react";
+import { Fragment, useEffect, useState } from "react";
 import { createUseStyles } from "react-jss";
-import Grid, { GRID_ROW, COL_1_OF_4 } from "./components/layout/Grid";
+import Grid, {
+    GRID_ROW,
+    COL_1_OF_4,
+    COL_2_OF_4,
+} from "./components/layout/Grid";
 import { GREY_B } from "./constants/colors";
 import ShadowBox from "./components/layout/ShadowBox";
 import ThumbnailMain from "./components/presentations/ThumbnailMain";
 import { usePromise } from "./utils/promise";
-import mockData from './constants/mockData';
+import Select from "./components/forms/Select";
+import { getAsciiFaces } from "./utils/api";
+import Spinner from "./components/common/Spinner";
+import InfiniteScroll from "react-infinite-scroll-component";
 
 const useStyles = createUseStyles({
     mainContainer: {
         backgroundColor: GREY_B,
-        minHeight: "100vh",
+        minHeight: "110vh",
         width: "100%",
-        padding: "10rem 0",
+        padding: "7rem 0",
     },
 });
 
 function App() {
     const classes = useStyles();
 
-    const getAsciiFaces = () => {
-        return new Promise((resolve, reject) => {
-            if (!mockData) {
-                return setTimeout(
-                    () => reject(new Error("Ascii faces not found!")),
-                    2000
-                );
-            }
+    const [listItems, setListItems] = useState([]);
+    const [nextListItems, setNextListItems] = useState([]);
 
-            setTimeout(() => resolve(mockData), 2000);
-        });
-    };
+    const [sortString, setSortString] = useState("title");
+    const sortOptions = [
+        { value: "title", displayValue: "Title" },
+        { value: "badgeContent", displayValue: "Badge Content / Price" },
+        { value: "id", displayValue: "ID" },
+    ];
+    const pageLimit = 20;
 
     const asciiFaceRequest = usePromise({
-        promiseFunction: async () => {
-            const result = await getAsciiFaces();
+        promiseFunction: async (page) => {
+            const result = await getAsciiFaces(sortString, pageLimit, page);
             return result;
         },
     });
 
+    const getAsciiFacesRequest = (initialLoad) => {
+        asciiFaceRequest
+            .call()
+            .then((data) => {
+                if (initialLoad) {
+                    setListItems([...data.results]);
+                }
+
+                return asciiFaceRequest.call(data.nextPage);
+            })
+            .then((data) => {
+                setNextListItems([...data.results]);
+            });
+    };
+
+    const loadMoreItems = () => {
+        listItems.push([...nextListItems]);
+        getAsciiFacesRequest(false);
+    };
+
     useEffect(() => {
-        asciiFaceRequest.call();
+        getAsciiFacesRequest(true);
     }, []);
 
+    useEffect(() => {
+        getAsciiFacesRequest(false);
+    }, [sortString]);
+
     const asciiFaceList =
-        asciiFaceRequest.fulfilled &&
-        asciiFaceRequest.value.map((item) => (
+        listItems.length > 0 &&
+        listItems.map((item) => (
             <Grid variety={COL_1_OF_4}>
                 <ShadowBox isLinked>
                     <ThumbnailMain
@@ -64,10 +93,26 @@ function App() {
     return (
         <div className={classes.mainContainer}>
             <Grid variety={GRID_ROW}>
+                <Grid variety={COL_2_OF_4}>
+                    <Select
+                        options={sortOptions}
+                        onChange={(e) => setSortString(e.target.value)}
+                    />
+                </Grid>
+            </Grid>
+
+            <Grid variety={GRID_ROW}>
                 {asciiFaceRequest.pending ? (
-                    <Fragment>loading...</Fragment>
+                    <Spinner />
                 ) : (
-                    asciiFaceList
+                    <InfiniteScroll
+                        next={loadMoreItems}
+                        dataLength={100}
+                        hasMore={true}
+                        loader={<Spinner />}
+                    >
+                        {asciiFaceList}{" "}
+                    </InfiniteScroll>
                 )}
             </Grid>
         </div>
