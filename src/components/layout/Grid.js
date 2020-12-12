@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { createUseCSS } from "../../utils/CSS";
+import { createUseCSS } from "../../utils/css";
 import {
     MAX_WIDTH,
     GUTTER_HORIZONTAL,

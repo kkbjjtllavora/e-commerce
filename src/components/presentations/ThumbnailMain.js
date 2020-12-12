@@ -24,7 +24,7 @@ const useStyles = createUseStyles({
         alignItems: "center",
     },
 
-    fontFaceContainer: {
+    asciiFaceContainer: {
         width: "100%",
         display: "inline-block",
         fontSize: "2rem",
@@ -54,7 +54,7 @@ const useStyles = createUseStyles({
 });
 
 const ThumbnailMain = ({
-    fontFace,
+    asciiFace,
     title,
     description,
     badgeColor,
@@ -68,7 +68,7 @@ const ThumbnailMain = ({
         <a href="/#" className={classes.thumbnailLink}>
             <article>
                 <div className={classes.thumbnailMain}>
-                    <div className={classes.fontFaceContainer}>{fontFace}</div>
+                    <div className={classes.asciiFaceContainer}>{asciiFace}</div>
                     <h4 className={classes.thumbnailTitle}>{title}</h4>
                     <p className={classes.thumbnailDescription}>
                         {description}
