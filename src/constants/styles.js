@@ -1,3 +1,5 @@
+import { PURE_BLACK_RGB } from "./colors";
+
 export const DEFAULT_FONT_SIZE = "1.6rem";
 
 // GRID SIZES
@@ -12,6 +14,8 @@ export const U_MARGIN_BOTTOM_BIG = "8rem";
 
 export const U_MARGIN_TOP_BIG = "8rem";
 export const U_MARGIN_TOP_HUGE = "10rem";
+
+export const DEFAULT_SHADOW_STYLE = `rgba(${PURE_BLACK_RGB}, 0.2) 0px 1px 1px`;
 
 // CENTER CONTENT ABSOLUTELY INTO A CONTAINER
 export const U_ABSOLUTE_CENTER = {
