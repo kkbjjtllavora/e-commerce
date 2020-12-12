@@ -1,14 +1,11 @@
+import { Fragment, useEffect } from "react";
 import { createUseStyles } from "react-jss";
 import Grid, { GRID_ROW, COL_1_OF_4 } from "./components/layout/Grid";
 import { GREY_B } from "./constants/colors";
 import ShadowBox from "./components/layout/ShadowBox";
-import {
-    BADGE_GREEN,
-    BADGE_BLUE,
-    BADGE_ORANGE,
-    BADGE_RED,
-} from "./components/common/Badge";
 import ThumbnailMain from "./components/presentations/ThumbnailMain";
+import { usePromise } from "./utils/promise";
+import mockData from './constants/mockData';
 
 const useStyles = createUseStyles({
     mainContainer: {
@@ -22,68 +19,56 @@ const useStyles = createUseStyles({
 function App() {
     const classes = useStyles();
 
+    const getAsciiFaces = () => {
+        return new Promise((resolve, reject) => {
+            if (!mockData) {
+                return setTimeout(
+                    () => reject(new Error("Ascii faces not found!")),
+                    2000
+                );
+            }
+
+            setTimeout(() => resolve(mockData), 2000);
+        });
+    };
+
+    const asciiFaceRequest = usePromise({
+        promiseFunction: async () => {
+            const result = await getAsciiFaces();
+            return result;
+        },
+    });
+
+    useEffect(() => {
+        asciiFaceRequest.call();
+    }, []);
+
+    const asciiFaceList =
+        asciiFaceRequest.fulfilled &&
+        asciiFaceRequest.value.map((item) => (
+            <Grid variety={COL_1_OF_4}>
+                <ShadowBox isLinked>
+                    <ThumbnailMain
+                        asciiFace={item.asciiFace}
+                        title={item.title}
+                        description={item.description}
+                        badgeColor={item.badgeColor}
+                        badgeIcon="$"
+                        pillContent={item.pillContent}
+                        badgeContent={item.badgeContent}
+                    />
+                </ShadowBox>
+            </Grid>
+        ));
+
     return (
         <div className={classes.mainContainer}>
             <Grid variety={GRID_ROW}>
-                <Grid variety={COL_1_OF_4}>
-                    <ShadowBox isLinked>
-                        <ThumbnailMain
-                            fontFace="(づ｡◕‿‿◕｡)づ"
-                            title="Daily News"
-                            description="
-                                    Improve your communication skills and have
-                                    better conversations."
-                            badgeColor={BADGE_GREEN}
-                            badgeIcon="$"
-                            pillContent="5 Days ago"
-                            badgeContent="300.00"
-                        />
-                    </ShadowBox>
-                </Grid>
-                <Grid variety={COL_1_OF_4}>
-                    <ShadowBox isLinked>
-                        <ThumbnailMain
-                            fontFace=" ̿ ̿'̿'\̵͇̿̿\з=(•_•)=ε/̵͇̿̿/'̿'̿ ̿"
-                            title="Conversation"
-                            description="
-                            Our most popular material. New lessons
-                            added every day based on current events."
-                            badgeColor={BADGE_BLUE}
-                            badgeIcon="$"
-                            pillContent="3 Days ago"
-                            badgeContent="500.00"
-                        />
-                    </ShadowBox>
-                </Grid>
-                <Grid variety={COL_1_OF_4}>
-                    <ShadowBox isLinked>
-                        <ThumbnailMain
-                            fontFace="̿̿̿（╯°□°）╯︵( .o.)"
-                            title="Describing Pictures"
-                            description="
-                            Increase your vocabulary and speaking
-                                        skills by describing pictures."
-                            badgeColor={BADGE_ORANGE}
-                            badgeIcon="$"
-                            pillContent="3 Days ago"
-                            badgeContent="400.00"
-                        />
-                    </ShadowBox>
-                </Grid>
-                <Grid variety={COL_1_OF_4}>
-                    <ShadowBox isLinked>
-                        <ThumbnailMain
-                            fontFace="(▀̿Ĺ̯▀̿ ̿)"
-                            title="Health & Lifestyle"
-                            description="
-                            Learn health-related vocabulary and expressions health-related issues"
-                            badgeColor={BADGE_RED}
-                            badgeIcon="$"
-                            pillContent="3 Days ago"
-                            badgeContent="400.00"
-                        />
-                    </ShadowBox>
-                </Grid>
+                {asciiFaceRequest.pending ? (
+                    <Fragment>loading...</Fragment>
+                ) : (
+                    asciiFaceList
+                )}
             </Grid>
         </div>
     );
