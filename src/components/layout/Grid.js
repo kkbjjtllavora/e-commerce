@@ -1,72 +1,74 @@
-import React from "react";
-import PropTypes from "prop-types";
-import { createUseCSS } from "../../utils/css";
+import React from 'react';
+import PropTypes from 'prop-types';
+import { createUseCSS } from '../../utils/css';
 import {
     MAX_WIDTH,
     GUTTER_HORIZONTAL,
     GUTTER_VERTICAL,
-} from "../../constants/styles";
+} from '../../constants/styles';
 
-export const GRID_ROW = "grid-row";
-export const COL_1_OF_2 = "col-1-of-2";
-export const COL_1_OF_3 = "col-1-of-3";
-export const COL_2_OF_3 = "col-2-of-3";
-export const COL_1_OF_4 = "col-1-of-4";
-export const COL_2_OF_4 = "col-2-of-4";
-export const COL_3_OF_4 = "col-3-of-4";
+export const GRID_ROW = 'grid-row';
+export const COL_1_OF_2 = 'col-1-of-2';
+export const COL_1_OF_3 = 'col-1-of-3';
+export const COL_2_OF_3 = 'col-2-of-3';
+export const COL_1_OF_4 = 'col-1-of-4';
+export const COL_2_OF_4 = 'col-2-of-4';
+export const COL_3_OF_4 = 'col-3-of-4';
 
 const BASE_COLUMN_STYLE = {
-    float: "left",
+    float: 'left',
 
-    "&:not(:last-child)": {
+    '&:not(:last-child)': {
         marginRight: GUTTER_HORIZONTAL,
+        marginBottom: '.75rem',
+        marginTop: '.75rem',
     },
 };
 
 const useCSS = createUseCSS({
     [GRID_ROW]: {
         maxWidth: MAX_WIDTH,
-        margin: "0 auto",
+        margin: '0 auto',
 
-        "&:not(:last-child)": {
+        '&:not(:last-child)': {
             marginBottom: GUTTER_VERTICAL,
         },
 
-        "&::after": {
+        '&::after': {
             content: '""',
-            display: "table",
-            clear: "both",
+            display: 'table',
+            clear: 'both',
         },
     },
 
     [COL_1_OF_2]: {
         ...BASE_COLUMN_STYLE,
-        width: `calc((100% - ${GUTTER_HORIZONTAL}) / 2)`,
+        width: `calc((98% - ${GUTTER_HORIZONTAL}) / 2)`,
     },
 
     [COL_1_OF_3]: {
         ...BASE_COLUMN_STYLE,
-        width: `calc((100% - 2 * ${GUTTER_HORIZONTAL}) / 3)`,
+        width: `calc((98% - 2 * ${GUTTER_HORIZONTAL}) / 3)`,
     },
 
     [COL_2_OF_3]: {
         ...BASE_COLUMN_STYLE,
-        width: `calc(2 * ((100% - 2 * ${GUTTER_HORIZONTAL}) / 3) + ${GUTTER_HORIZONTAL})`,
+        width: `calc(2 * ((98% - 2 * ${GUTTER_HORIZONTAL}) / 3) + ${GUTTER_HORIZONTAL})`,
     },
 
     [COL_1_OF_4]: {
         ...BASE_COLUMN_STYLE,
-        width: `calc((100% - 3 * ${GUTTER_HORIZONTAL}) / 4)`,
+        width: `calc((98% - 3 * ${GUTTER_HORIZONTAL}) / 4)`,
     },
 
     [COL_2_OF_4]: {
         ...BASE_COLUMN_STYLE,
-        width: `calc(((100% - 3 * ${GUTTER_HORIZONTAL}) / 2) + ${GUTTER_HORIZONTAL})`,
+        width: `calc(((98% - 3 * ${GUTTER_HORIZONTAL}) / 2) + ${GUTTER_HORIZONTAL})`,
     },
 
     [COL_3_OF_4]: {
         ...BASE_COLUMN_STYLE,
-        width: `calc(3 * ((100% - 3 * ${GUTTER_HORIZONTAL}) / 4) + ${GUTTER_HORIZONTAL} * 2)`,
+        width: `calc(3 * ((98% - 3 * ${GUTTER_HORIZONTAL}) / 4) + ${GUTTER_HORIZONTAL} * 2)`,
     },
 });
 

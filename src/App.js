@@ -1,4 +1,4 @@
-import { Fragment, useEffect, useState } from 'react';
+import { Fragment, useEffect, useState, useCallback } from 'react';
 import { createUseStyles } from 'react-jss';
 import Grid, {
     GRID_ROW,
@@ -12,6 +12,7 @@ import { usePromise } from './utils/promise';
 import Select from './components/forms/Select';
 import { getAsciiFaces } from './utils/api';
 import Spinner from './components/common/Spinner';
+import { GetSortOrder } from './utils/array';
 
 const useStyles = createUseStyles({
     mainContainer: {
@@ -22,7 +23,7 @@ const useStyles = createUseStyles({
     },
 });
 
-function App() {
+const App = () => {
     const classes = useStyles();
 
     const [listItems, setListItems] = useState([]);
@@ -30,9 +31,11 @@ function App() {
     const [nextPage, setNextPage] = useState(1);
     const [sortString, setSortString] = useState('title');
     const [isLoading, setIsLoading] = useState(true);
+    const [isSortLoading, setIsSortLoading] = useState(false);
     const [isShownAll, setIsShownAll] = useState(false);
     const [isDataFinished, setIsDataFinished] = useState(false);
-    const pageLimit = 25;
+    const pageLimit = 16;
+    const adsDB = [];
 
     const sortOptions = [
         { value: 'title', displayValue: 'Title' },
@@ -53,10 +56,11 @@ function App() {
                 setIsDataFinished(true);
             } else {
                 setNextPage(nextPage + 1);
+
                 if (initialLoad) {
-                    setListItems([...listItems, ...data.results]);
+                    setListItems([...data.results]);
                 } else {
-                    setNextListItems([...nextListItems, ...data.results]);
+                    setNextListItems([...data.results]);
                 }
             }
         });
@@ -75,41 +79,64 @@ function App() {
         const scrolledToBottom =
             Math.ceil(scrollTop + clientHeight) >= scrollHeight;
 
-        if (scrolledToBottom) {
+        if (scrolledToBottom && !isShownAll) {
             //first show saved items
             setIsLoading(true);
-            setTimeout(() => {
-                setListItems([...listItems, ...nextListItems]);
-                setNextListItems([]);
+            setTimeout(async () => {
+                await setListItems([...listItems, ...nextListItems]);
+                await setIsLoading(false);
+                await setNextListItems([]);
+            }, 1000);
 
-                setIsLoading(false);
-            }, 5000);
-            //
-            // setIsLoading(false);
-
-            // if (!isDataFinished) {
-            //     //then fetch new items and save it into preItems state
-            //     await getAsciiFacesRequest(false);
-            // } else {
-            //     //show end message & disable on scroll
-            // 	setIsShownAll(true);
-            // }
+            if (!isDataFinished) {
+                await getAsciiFacesRequest(false);
+            } else {
+                setIsShownAll(true);
+            }
         }
     };
 
-    useEffect(async () => {
-        window.addEventListener('scroll', handleScroll);
+    const getAdId = () => {
+        //generating random ad id when add is displayed as the test wanted
+        //ads server api has a small bug. Both r=7 and r=8 have same ad banner!
+        let id;
+        while (true) {
+            id = Math.floor(Math.random() * 10) + 0; //based on backend(handle-ad.js), there is no difference between 0-9 and 0-99999999 in ad real id result,
+            if (adsDB[adsDB.length - 1] !== id) {
+                //prevent same ad in a row
+                return id;
+            }
+        }
+    };
+
+    const fetchData = async () => {
         await getAsciiFacesRequest(true);
         await getAsciiFacesRequest(false);
+    };
+
+    useEffect(() => {
+        fetchData();
+    }, []);
+
+    useEffect(() => {
+        window.addEventListener('scroll', handleScroll);
 
         return function cleanup() {
             window.removeEventListener('scroll', handleScroll);
         };
-    }, []);
+    });
 
-    useEffect(() => {
-        getAsciiFacesRequest(true);
-    }, [sortString]);
+    const handleSort = (e) => {
+        setIsSortLoading(true);
+        setIsLoading(false);
+
+        setTimeout(() => {
+            const sortedList = listItems.sort(GetSortOrder(e.target.value));
+            setListItems(sortedList);
+
+            setIsSortLoading(false);
+        }, 1000);
+    };
 
     const showItems = () => {
         var renderOutPut = [];
@@ -124,7 +151,7 @@ function App() {
                         <ThumbnailMain
                             asciiFace={item.asciiFace}
                             title={item.title}
-                            description={item.description}
+                            description={item.id}
                             badgeColor={item.badgeColor}
                             badgeIcon="$"
                             pillContent={item.pillContent}
@@ -133,6 +160,28 @@ function App() {
                     </ShadowBox>
                 </Grid>
             );
+
+            if (itemCount % 20 === 0) {
+                //check add id is exists or not in db
+                let adId;
+                if (adsDB[adsCount] !== undefined) {
+                    adId = adsDB[adsCount];
+                } else {
+                    adId = getAdId();
+                    adsDB[adsCount] = adId;
+                }
+                adId = `/ads/?r=${adId}`;
+                renderOutPut.push(
+                    <div
+                        className="AdOuter"
+                        key={"adfor" + itemCount}
+                        id={"adfor" + itemCount}
+                    >
+                        <img className="ad" src={adId} />
+                    </div>
+                );
+                adsCount++;
+            }
         }
 
         return renderOutPut;
@@ -142,23 +191,20 @@ function App() {
         <div className={classes.mainContainer}>
             <Grid variety={GRID_ROW}>
                 <Grid variety={COL_2_OF_4}>
-                    <Select
-                        options={sortOptions}
-                        onChange={(e) => setSortString(e.target.value)}
-                    />
+                    <Select options={sortOptions} onChange={handleSort} />
                 </Grid>
             </Grid>
 
             <Grid variety={GRID_ROW}>
-                <Fragment>{showItems()}</Fragment>
+                <Fragment>{isSortLoading ? <Spinner /> : showItems()}</Fragment>
             </Grid>
 
             <Grid variety={GRID_ROW}>
-                {isLoading && <p>Loading...</p>}
+                {isLoading && !isShownAll && <Spinner />}
                 {isShownAll && <p>~ end of catalogue ~</p>}
             </Grid>
         </div>
     );
-}
+};
 
 export default App;

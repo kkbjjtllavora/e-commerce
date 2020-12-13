@@ -45,10 +45,10 @@ const useCSS = createUseCSS({
 
     spinner: {
         color: GREY_E,
-        fontSize: "20px",
-        margin: "100px auto",
-        width: "2rem",
-        height: "2rem",
+        fontSize: "10px",
+        margin: "50px auto",
+        width: "1rem",
+        height: "1rem",
         borderRadius: "50%",
         position: "relative",
         textIndent: "-9999em",
