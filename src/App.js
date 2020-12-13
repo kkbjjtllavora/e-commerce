@@ -32,7 +32,7 @@ function App() {
     const [isLoading, setIsLoading] = useState(true);
     const [isShownAll, setIsShownAll] = useState(false);
     const [isDataFinished, setIsDataFinished] = useState(false);
-    const pageLimit = 20;
+    const pageLimit = 25;
 
     const sortOptions = [
         { value: 'title', displayValue: 'Title' },
@@ -54,10 +54,9 @@ function App() {
             } else {
                 setNextPage(nextPage + 1);
                 if (initialLoad) {
-					setListItems(data.results);
-					setIsLoading(false);
+                    setListItems([...listItems, ...data.results]);
                 } else {
-                    setNextListItems(data.results);
+                    setNextListItems([...nextListItems, ...data.results]);
                 }
             }
         });
@@ -76,53 +75,41 @@ function App() {
         const scrolledToBottom =
             Math.ceil(scrollTop + clientHeight) >= scrollHeight;
 
-        if (scrolledToBottom && !isLoading && !isShownAll) {
+        if (scrolledToBottom) {
             //first show saved items
-            setListItems([...listItems, ...nextListItems]);
-            setNextListItems([]);
             setIsLoading(true);
+            setTimeout(() => {
+                setListItems([...listItems, ...nextListItems]);
+                setNextListItems([]);
 
-            if (!isDataFinished) {
-                //then fetch new items and save it into preItems state
-                await getAsciiFacesRequest(false);
                 setIsLoading(false);
-            } else {
-                //show end message & disable on scroll
-                setIsLoading(false);
-                setIsShownAll(true);
-            }
+            }, 5000);
+            //
+            // setIsLoading(false);
 
-			console.log(listItems, nextListItems);
-		}
+            // if (!isDataFinished) {
+            //     //then fetch new items and save it into preItems state
+            //     await getAsciiFacesRequest(false);
+            // } else {
+            //     //show end message & disable on scroll
+            // 	setIsShownAll(true);
+            // }
+        }
     };
 
-    useEffect(() => {
+    useEffect(async () => {
         window.addEventListener('scroll', handleScroll);
-        getAsciiFacesRequest(true);
-        getAsciiFacesRequest(false);
+        await getAsciiFacesRequest(true);
+        await getAsciiFacesRequest(false);
+
+        return function cleanup() {
+            window.removeEventListener('scroll', handleScroll);
+        };
     }, []);
 
     useEffect(() => {
         getAsciiFacesRequest(true);
     }, [sortString]);
-
-    // const asciiFaceList =
-    //     listItems.length > 0 &&
-    //     listItems.map((item) => (
-    //         <Grid variety={COL_1_OF_4}>
-    //             <ShadowBox isLinked>
-    //                 <ThumbnailMain
-    //                     asciiFace={item.asciiFace}
-    //                     title={item.title}
-    //                     description={item.description}
-    //                     badgeColor={item.badgeColor}
-    //                     badgeIcon="$"
-    //                     pillContent={item.pillContent}
-    //                     badgeContent={item.badgeContent}
-    //                 />
-    //             </ShadowBox>
-    //         </Grid>
-    //     ));
 
     const showItems = () => {
         var renderOutPut = [];
@@ -146,28 +133,6 @@ function App() {
                     </ShadowBox>
                 </Grid>
             );
-
-            //   if (itemCount % 20 === 0) {
-            // 	//check add id is exists or not in db
-            // 	let adId;
-            // 	if (this.adsDB[adsCount] !== undefined) {
-            // 	  adId = this.adsDB[adsCount];
-            // 	} else {
-            // 	  adId = this.getAdId();
-            // 	  this.adsDB[adsCount] = adId;
-            // 	}
-            // 	adId = `/ads/?r=${adId}`;
-            // 	renderOutPut.push(
-            // 	  <div
-            // 		className="AdOuter"
-            // 		key={"adfor" + itemCount}
-            // 		id={"adfor" + itemCount}
-            // 	  >
-            // 		<img className="ad" src={adId} />
-            // 	  </div>
-            // 	);
-            // 	adsCount++;
-            //   }
         }
 
         return renderOutPut;
@@ -185,11 +150,10 @@ function App() {
             </Grid>
 
             <Grid variety={GRID_ROW}>
-                {isLoading ? (
-                    <Spinner />
-                ) : (
-                    <Fragment>{showItems()}</Fragment>
-                )}
+                <Fragment>{showItems()}</Fragment>
+            </Grid>
+
+            <Grid variety={GRID_ROW}>
                 {isLoading && <p>Loading...</p>}
                 {isShownAll && <p>~ end of catalogue ~</p>}
             </Grid>

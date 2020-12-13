@@ -6,7 +6,7 @@ export const getAsciiFaces = (sortString, limit = 40, page = 1) => {
         if (!mockData) {
             return setTimeout(
                 () => reject(new Error("Ascii faces not found!")),
-                1500
+                1000
             );
         }
 
@@ -22,6 +22,6 @@ export const getAsciiFaces = (sortString, limit = 40, page = 1) => {
             results: paginatedArray,
         }
 
-        setTimeout(() => resolve(data), 1500);
+        setTimeout(() => resolve(data), 1000);
     });
 };
