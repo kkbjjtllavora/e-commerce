@@ -28,6 +28,7 @@ const useStyles = createUseStyles({
         width: '100%',
         padding: '7rem 0',
     },
+    
     endText: {
         textAlign: 'center',
         fontSize: '1.6rem',
@@ -48,7 +49,13 @@ const App = () => {
     const [isDataFinished, setIsDataFinished] = useState(false);
 
     const pageLimit = 16;
-    const adsList = [adBannerA, adBannerB, adBannerC, adBannerD, adBannerE];
+    const adBannerList = [
+        adBannerA,
+        adBannerB,
+        adBannerC,
+        adBannerD,
+        adBannerE,
+    ];
 
     const sortOptions = [
         { value: 'title', displayValue: 'Title' },
@@ -96,11 +103,11 @@ const App = () => {
         }
     };
 
-    const getAdName = () => {
+    const getAdBannerName = () => {
         let id;
         while (true) {
             id = Math.floor(Math.random() * 10) + 0;
-            if (adsList[adsList.length - 1] !== id) {
+            if (adBannerList[adBannerList.length - 1] !== id) {
                 return id;
             }
         }
@@ -136,48 +143,49 @@ const App = () => {
     };
 
     const renderItems = () => {
-        var renderOutPut = [];
+        var asciiFacesOutput = [];
+        let adsBannerCount = 0;
+        let adsBannerTotal = 0;
 
-        let itemCount = 0;
-        let adsTotalCount = 0;
-
-        for (const item of listItems) {
-            itemCount++;
-            renderOutPut.push(
-                <Grid variety={COL_1_OF_4}>
-                    <ShadowBox isLinked>
-                        <ThumbnailMain
-                            asciiFace={item.asciiFace}
-                            title={item.title}
-                            description={`ID: ${item.id}`}
-                            badgeColor={item.badgeColor}
-                            badgeIcon="$"
-                            pillContent={item.createdAt}
-                            badgeContent={item.price}
-                        />
-                    </ShadowBox>
-                </Grid>
-            );
-
-            if (itemCount % 20 === 0) {
-                let adName;
-                if (adsList[adsTotalCount] !== undefined) {
-                    adName = adsList[adsTotalCount];
-                } else {
-                    adName = getAdName();
-                    adsList[adsTotalCount] = adName;
-                }
-
-                renderOutPut.push(
-                    <div key={itemCount}>
-                        <Img src={adName} width="90%" />
-                    </div>
+        listItems.forEach(
+            ({ asciiFace, title, id, badgeColor, createdAt, price }) => {
+                adsBannerCount++;
+                asciiFacesOutput.push(
+                    <Grid variety={COL_1_OF_4}>
+                        <ShadowBox isLinked>
+                            <ThumbnailMain
+                                asciiFace={asciiFace}
+                                title={title}
+                                description={`ID: ${id}`}
+                                badgeColor={badgeColor}
+                                badgeIcon="$"
+                                pillContent={createdAt}
+                                badgeContent={price}
+                            />
+                        </ShadowBox>
+                    </Grid>
                 );
-                adsTotalCount++;
-            }
-        }
 
-        return renderOutPut;
+                if (adsBannerCount % 20 === 0) {
+                    let adName;
+                    if (adBannerList[adsBannerTotal] !== undefined) {
+                        adName = adBannerList[adsBannerTotal];
+                    } else {
+                        adName = getAdBannerName();
+                        adBannerList[adsBannerTotal] = adName;
+                    }
+
+                    asciiFacesOutput.push(
+                        <div key={adsBannerCount}>
+                            <Img src={adName} width="90%" />
+                        </div>
+                    );
+                    adsBannerTotal++;
+                }
+            }
+        );
+
+        return asciiFacesOutput;
     };
 
     return (
