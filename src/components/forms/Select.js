@@ -1,61 +1,61 @@
-import React from "react";
-import PropTypes from "prop-types";
-import { createUseCSS } from "../../utils/css";
+import React from 'react';
+import PropTypes from 'prop-types';
+import { createUseCSS } from '../../utils/css';
 import {
     GREY_C,
     PURE_WHITE,
     RED_A,
     BLACK_A,
     GREY_E,
-} from "../../constants/colors";
+} from '../../constants/colors';
 import {
     DEFAULT_FONT_SIZE,
     DEFAULT_SHADOW_STYLE,
-} from "../../constants/styles";
+} from '../../constants/styles';
 
 const useCSS = createUseCSS({
     selectContainer: {
-        width: "100%",
-        boxSizing: "border-box",
-        marginBottom: "1.5rem",
+        width: '100%',
+        boxSizing: 'border-box',
+        marginBottom: '1.5rem',
     },
 
     label: {
-        fontWeight: "bold",
-        display: "block",
-        marginBottom: "4px",
+        fontWeight: 'bold',
+        display: 'block',
+        marginBottom: '4px',
         color: BLACK_A,
-        fontSize: "1.4rem",
+        fontSize: '1.4rem',
     },
 
     selectElement: {
-        outline: "none",
-        border: "none",
+        outline: 'none',
+        border: 'none',
         backgroundColor: PURE_WHITE,
-        padding: "1.5rem 2rem",
-        display: "block",
-        width: "100%",
-        boxSizing: "border-box",
+        padding: '1.5rem 2rem',
+        display: 'block',
+        width: '100%',
+        boxSizing: 'border-box',
         boxShadow: DEFAULT_SHADOW_STYLE,
         fontSize: DEFAULT_FONT_SIZE,
-        color: GREY_E + " !important",
+        color: GREY_E + ' !important',
 
-        "&:focus": {
-            outline: "none",
+        '&:focus': {
+            outline: 'none',
             borderColor: GREY_C,
         },
 
-        "&::placeholder": {
+        '&::placeholder': {
             color: BLACK_A,
         },
 
-        "&:hover": {
-            cursor: "pointer",
+        '&:hover': {
+            cursor: 'pointer',
         },
     },
 
     invalid: {
-        border: "1px solid " + RED_A,
+        border: '1px solid ' + RED_A,
     },
 });
 

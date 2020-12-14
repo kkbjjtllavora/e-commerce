@@ -1,17 +1,17 @@
-import mockData from "../constants/mockData";
-import { GetSortOrder, paginateArray } from "./array";
+import mockData from '../constants/mockData';
+import { getSortOrder, paginateArray } from './array';
 
 export const getAsciiFaces = (sortString, limit = 20, page = 1) => {
     return new Promise((resolve, reject) => {
         if (!mockData) {
             return setTimeout(
-                () => reject(new Error("Ascii faces not found!")),
+                () => reject(new Error('Ascii faces not found!')),
                 1500
             );
         }
 
         if (sortString) {
-            mockData.sort(GetSortOrder(sortString));
+            mockData.sort(getSortOrder(sortString));
         }
 
         const paginatedArray = paginateArray(mockData, limit, page);
@@ -20,7 +20,7 @@ export const getAsciiFaces = (sortString, limit = 20, page = 1) => {
             nextPage: page + 1,
             totalCount: mockData.length,
             results: paginatedArray,
-        }
+        };
 
         setTimeout(() => resolve(data), 1500);
     });

@@ -1,18 +1,19 @@
-import { Fragment, useEffect, useState, useCallback } from 'react';
+import { Fragment, useEffect, useState } from 'react';
 import { createUseStyles } from 'react-jss';
 import Grid, {
     GRID_ROW,
     COL_1_OF_4,
     COL_2_OF_4,
 } from './components/layout/Grid';
-import { GREY_B } from './constants/colors';
+import Spinner from './components/common/Spinner';
 import ShadowBox from './components/layout/ShadowBox';
 import ThumbnailMain from './components/presentations/ThumbnailMain';
-import { usePromise } from './utils/promise';
 import Select from './components/forms/Select';
+import { GREY_B } from './constants/colors';
+import { usePromise } from './utils/promise';
 import { getAsciiFaces } from './utils/api';
-import Spinner from './components/common/Spinner';
-import { GetSortOrder } from './utils/array';
+import { getSortOrder } from './utils/array';
+import { scrolledToBottom } from './utils/window';
 
 const useStyles = createUseStyles({
     mainContainer: {
@@ -37,10 +38,13 @@ const App = () => {
     const pageLimit = 16;
     const adsDB = [];
 
+    console.log(adsDB);
+
     const sortOptions = [
         { value: 'title', displayValue: 'Title' },
-        { value: 'badgeContent', displayValue: 'Badge Content / Price' },
+        { value: 'price', displayValue: 'Price' },
         { value: 'id', displayValue: 'ID' },
+        { value: 'createdAt', displayValue: 'Date Created' },
     ];
 
     const asciiFaceRequest = usePromise({
@@ -67,19 +71,7 @@ const App = () => {
     };
 
     const handleScroll = async () => {
-        const scrollTop =
-            (document.documentElement && document.documentElement.scrollTop) ||
-            document.body.scrollTop;
-        const scrollHeight =
-            (document.documentElement &&
-                document.documentElement.scrollHeight) ||
-            document.body.scrollHeight;
-        const clientHeight =
-            document.documentElement.clientHeight || window.innerHeight;
-        const scrolledToBottom =
-            Math.ceil(scrollTop + clientHeight) >= scrollHeight;
-
-        if (scrolledToBottom && !isShownAll) {
+        if (scrolledToBottom() && !isShownAll) {
             //first show saved items
             setIsLoading(true);
             setTimeout(async () => {
@@ -97,13 +89,10 @@ const App = () => {
     };
 
     const getAdId = () => {
-        //generating random ad id when add is displayed as the test wanted
-        //ads server api has a small bug. Both r=7 and r=8 have same ad banner!
         let id;
         while (true) {
-            id = Math.floor(Math.random() * 10) + 0; //based on backend(handle-ad.js), there is no difference between 0-9 and 0-99999999 in ad real id result,
+            id = Math.floor(Math.random() * 10) + 0; 
             if (adsDB[adsDB.length - 1] !== id) {
-                //prevent same ad in a row
                 return id;
             }
         }
@@ -131,14 +120,14 @@ const App = () => {
         setIsLoading(false);
 
         setTimeout(() => {
-            const sortedList = listItems.sort(GetSortOrder(e.target.value));
+            const sortedList = listItems.sort(getSortOrder(e.target.value));
             setListItems(sortedList);
 
             setIsSortLoading(false);
         }, 1000);
     };
 
-    const showItems = () => {
+    const renderItems = () => {
         var renderOutPut = [];
 
         let itemCount = 0;
@@ -151,11 +140,11 @@ const App = () => {
                         <ThumbnailMain
                             asciiFace={item.asciiFace}
                             title={item.title}
-                            description={item.id}
+                            description={`ID: ${item.id}`}
                             badgeColor={item.badgeColor}
                             badgeIcon="$"
-                            pillContent={item.pillContent}
-                            badgeContent={item.badgeContent}
+                            pillContent={item.createdAt}
+                            badgeContent={item.price}
                         />
                     </ShadowBox>
                 </Grid>
@@ -174,8 +163,8 @@ const App = () => {
                 renderOutPut.push(
                     <div
                         className="AdOuter"
-                        key={"adfor" + itemCount}
-                        id={"adfor" + itemCount}
+                        key={'adfor' + itemCount}
+                        id={'adfor' + itemCount}
                     >
                         <img className="ad" src={adId} />
                     </div>
@@ -196,7 +185,9 @@ const App = () => {
             </Grid>
 
             <Grid variety={GRID_ROW}>
-                <Fragment>{isSortLoading ? <Spinner /> : showItems()}</Fragment>
+                <Fragment>
+                    {isSortLoading ? <Spinner /> : renderItems()}
+                </Fragment>
             </Grid>
 
             <Grid variety={GRID_ROW}>

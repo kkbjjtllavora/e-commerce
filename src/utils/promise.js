@@ -1,10 +1,10 @@
-import { useState } from "react";
+import { useState } from 'react';
 
 export const PROMISE_STATUS = {
-    notStarted: "not_started",
-    pending: "pending",
-    fulfilled: "fulfilled",
-    rejected: "rejected",
+    notStarted: 'not_started',
+    pending: 'pending',
+    fulfilled: 'fulfilled',
+    rejected: 'rejected',
 };
 
 export const initialRequest = {
@@ -64,4 +64,4 @@ export const usePromise = ({
     return Object.assign(Object.assign({}, updateableRequest.state), {
         call: wrappedPromiseFunction,
     });
-}
+};

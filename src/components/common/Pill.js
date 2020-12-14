@@ -1,12 +1,12 @@
-import { createUseStyles } from "react-jss";
-import { GREY_E, GREY_C } from "../../constants/colors";
+import { createUseStyles } from 'react-jss';
+import { GREY_E, GREY_C } from '../../constants/colors';
 
 const useStyles = createUseStyles({
     pill: {
         color: GREY_E,
-        fontWeight: "500",
+        fontWeight: '500',
         backgroundColor: GREY_C,
-        padding: ".5rem 1rem",
+        padding: '.5rem 1rem',
     },
 });
 
