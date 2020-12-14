@@ -43,7 +43,6 @@ const App = () => {
     const [nextPage, setNextPage] = useState(1);
     const [sortString, setSortString] = useState('title');
     const [isLoading, setIsLoading] = useState(false);
-    const [isShownAll, setIsShownAll] = useState(false);
     const [isDataFinished, setIsDataFinished] = useState(false);
 
     const pageLimit = 16;
@@ -87,7 +86,7 @@ const App = () => {
     };
 
     const handleScroll = async () => {
-        if (scrolledToBottom() && !isShownAll) {
+        if (scrolledToBottom() && !isLoading && !isDataFinished) {
             //first show saved items
             setIsLoading(true);
             setTimeout(async () => {
@@ -95,12 +94,6 @@ const App = () => {
                 await setIsLoading(false);
                 await setNextListItems([]);
             }, MOCK_LOADING_TIME);
-
-            if (!isDataFinished) {
-                await getAsciiFacesRequest(false);
-            } else {
-                setIsShownAll(true);
-            }
         }
     };
 
@@ -114,25 +107,25 @@ const App = () => {
         }
     };
 
-    
     const handleSort = (e) => {
         setSortString(e.target.value);
         setListItems([]);
         setNextListItems([]);
         setNextPage(1);
-        setIsShownAll();
-        setIsDataFinished();
-    }
-
-    const fetchData = async () => {
-        await getAsciiFacesRequest(true);
-        await getAsciiFacesRequest(false);
+        setIsDataFinished(false);
     };
 
+    const fetchAsciiList = async (isInitial) => {
+        await getAsciiFacesRequest(isInitial);
+    };
 
     useEffect(() => {
-        fetchData();
+        fetchAsciiList(true);
     }, []);
+
+    useEffect(() => {
+        fetchAsciiList(false);
+    }, [listItems]);
 
     useEffect(() => {
         window.addEventListener('scroll', handleScroll);
@@ -143,8 +136,7 @@ const App = () => {
     });
 
     useEffect(() => {
-        getAsciiFacesRequest(true);
-        getAsciiFacesRequest(false);
+        fetchAsciiList(true);
     }, [sortString]);
 
     const renderAsciiFaces = () => {
@@ -197,22 +189,17 @@ const App = () => {
         <div className={classes.mainContainer}>
             <Grid variety={GRID_ROW}>
                 <Grid variety={COL_2_OF_4}>
-                    <Select
-                        options={sortOptions}
-                        onChange={handleSort}
-                    />
+                    <Select options={sortOptions} onChange={handleSort} />
                 </Grid>
             </Grid>
 
             <Grid variety={GRID_ROW}>
-                <Fragment>
-                    {renderAsciiFaces()}
-                </Fragment>
+                <Fragment>{renderAsciiFaces()}</Fragment>
             </Grid>
 
             <Grid variety={GRID_ROW}>
-                {isLoading && !isShownAll && <Spinner />}
-                {isShownAll && !isLoading && (
+                {isLoading && !isDataFinished && <Spinner />}
+                {isDataFinished && (
                     <p className={classes.endText}>~ end of catalogue ~</p>
                 )}
             </Grid>

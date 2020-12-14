@@ -1,7 +1,7 @@
 import mockData from '../constants/mockData';
 import { getSortOrder, paginateArray } from './array';
 
-export const MOCK_LOADING_TIME = 1500;
+export const MOCK_LOADING_TIME = 500;
 
 export const getAsciiFaces = (sortString, limit = 20, page = 1) => {
     return new Promise((resolve, reject) => {
