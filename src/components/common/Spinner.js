@@ -1,5 +1,5 @@
 import React from 'react';
-import { createUseCSS, keyframe } from '../../utils/css';
+import { createUseCSS, keyframe } from '../../utils/CSS';
 import { generateKeyFrameName } from '../../utils/strings';
 import { GREY_E } from '../../constants/colors';
 

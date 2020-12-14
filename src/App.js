@@ -6,6 +6,7 @@ import Grid, {
     COL_2_OF_4,
 } from './components/layout/Grid';
 import Spinner from './components/common/Spinner';
+import Img from './components/common/Img';
 import ShadowBox from './components/layout/ShadowBox';
 import ThumbnailMain from './components/presentations/ThumbnailMain';
 import Select from './components/forms/Select';
@@ -14,6 +15,11 @@ import { usePromise } from './utils/promise';
 import { getAsciiFaces } from './utils/api';
 import { getSortOrder } from './utils/array';
 import { scrolledToBottom } from './utils/window';
+import adBannerA from './assets/images/banner-ad-a.jpg';
+import adBannerB from './assets/images/banner-ad-b.jpg';
+import adBannerC from './assets/images/banner-ad-c.jpg';
+import adBannerD from './assets/images/banner-ad-d.jpg';
+import adBannerE from './assets/images/banner-ad-e.jpg';
 
 const useStyles = createUseStyles({
     mainContainer: {
@@ -21,6 +27,11 @@ const useStyles = createUseStyles({
         minHeight: '110vh',
         width: '100%',
         padding: '7rem 0',
+    },
+    endText: {
+        textAlign: 'center',
+        fontSize: '1.6rem',
+        margin: '6rem 0 0',
     },
 });
 
@@ -35,10 +46,9 @@ const App = () => {
     const [isSortLoading, setIsSortLoading] = useState(false);
     const [isShownAll, setIsShownAll] = useState(false);
     const [isDataFinished, setIsDataFinished] = useState(false);
-    const pageLimit = 16;
-    const adsDB = [];
 
-    console.log(adsDB);
+    const pageLimit = 16;
+    const adsList = [adBannerA, adBannerB, adBannerC, adBannerD, adBannerE];
 
     const sortOptions = [
         { value: 'title', displayValue: 'Title' },
@@ -61,11 +71,9 @@ const App = () => {
             } else {
                 setNextPage(nextPage + 1);
 
-                if (initialLoad) {
-                    setListItems([...data.results]);
-                } else {
-                    setNextListItems([...data.results]);
-                }
+                initialLoad
+                    ? setListItems([...data.results])
+                    : setNextListItems([...data.results]);
             }
         });
     };
@@ -88,11 +96,11 @@ const App = () => {
         }
     };
 
-    const getAdId = () => {
+    const getAdName = () => {
         let id;
         while (true) {
-            id = Math.floor(Math.random() * 10) + 0; 
-            if (adsDB[adsDB.length - 1] !== id) {
+            id = Math.floor(Math.random() * 10) + 0;
+            if (adsList[adsList.length - 1] !== id) {
                 return id;
             }
         }
@@ -131,7 +139,8 @@ const App = () => {
         var renderOutPut = [];
 
         let itemCount = 0;
-        let adsCount = 0;
+        let adsTotalCount = 0;
+
         for (const item of listItems) {
             itemCount++;
             renderOutPut.push(
@@ -151,25 +160,20 @@ const App = () => {
             );
 
             if (itemCount % 20 === 0) {
-                //check add id is exists or not in db
-                let adId;
-                if (adsDB[adsCount] !== undefined) {
-                    adId = adsDB[adsCount];
+                let adName;
+                if (adsList[adsTotalCount] !== undefined) {
+                    adName = adsList[adsTotalCount];
                 } else {
-                    adId = getAdId();
-                    adsDB[adsCount] = adId;
+                    adName = getAdName();
+                    adsList[adsTotalCount] = adName;
                 }
-                adId = `/ads/?r=${adId}`;
+
                 renderOutPut.push(
-                    <div
-                        className="AdOuter"
-                        key={'adfor' + itemCount}
-                        id={'adfor' + itemCount}
-                    >
-                        <img className="ad" src={adId} />
+                    <div key={itemCount}>
+                        <Img src={adName} width="90%" />
                     </div>
                 );
-                adsCount++;
+                adsTotalCount++;
             }
         }
 
@@ -192,7 +196,9 @@ const App = () => {
 
             <Grid variety={GRID_ROW}>
                 {isLoading && !isShownAll && <Spinner />}
-                {isShownAll && <p>~ end of catalogue ~</p>}
+                {isShownAll && !isSortLoading && (
+                    <p className={classes.endText}>~ end of catalogue ~</p>
+                )}
             </Grid>
         </div>
     );

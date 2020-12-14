@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { createUseCSS } from '../../utils/css';
+import { createUseCSS } from '../../utils/CSS';
 import {
     GREY_C,
     PURE_WHITE,
