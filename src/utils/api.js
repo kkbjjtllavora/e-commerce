@@ -1,12 +1,14 @@
 import mockData from '../constants/mockData';
 import { getSortOrder, paginateArray } from './array';
 
+export const MOCK_LOADING_TIME = 1500;
+
 export const getAsciiFaces = (sortString, limit = 20, page = 1) => {
     return new Promise((resolve, reject) => {
         if (!mockData) {
             return setTimeout(
                 () => reject(new Error('Ascii faces not found!')),
-                1500
+                MOCK_LOADING_TIME
             );
         }
 
@@ -22,6 +24,6 @@ export const getAsciiFaces = (sortString, limit = 20, page = 1) => {
             results: paginatedArray,
         };
 
-        setTimeout(() => resolve(data), 1500);
+        setTimeout(() => resolve(data), MOCK_LOADING_TIME);
     });
 };

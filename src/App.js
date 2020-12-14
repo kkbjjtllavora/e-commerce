@@ -12,8 +12,7 @@ import ThumbnailMain from './components/presentations/ThumbnailMain';
 import Select from './components/forms/Select';
 import { GREY_B } from './constants/colors';
 import { usePromise } from './utils/promise';
-import { getAsciiFaces } from './utils/api';
-import { getSortOrder } from './utils/array';
+import { getAsciiFaces, MOCK_LOADING_TIME } from './utils/api';
 import { scrolledToBottom } from './utils/window';
 import adBannerA from './assets/images/banner-ad-a.jpg';
 import adBannerB from './assets/images/banner-ad-b.jpg';
@@ -44,7 +43,6 @@ const App = () => {
     const [nextPage, setNextPage] = useState(1);
     const [sortString, setSortString] = useState('title');
     const [isLoading, setIsLoading] = useState(false);
-    const [isSortLoading, setIsSortLoading] = useState(false);
     const [isShownAll, setIsShownAll] = useState(false);
     const [isDataFinished, setIsDataFinished] = useState(false);
 
@@ -96,7 +94,7 @@ const App = () => {
                 await setListItems([...listItems, ...nextListItems]);
                 await setIsLoading(false);
                 await setNextListItems([]);
-            }, 1000);
+            }, MOCK_LOADING_TIME);
 
             if (!isDataFinished) {
                 await getAsciiFacesRequest(false);
@@ -149,7 +147,7 @@ const App = () => {
         getAsciiFacesRequest(false);
     }, [sortString]);
 
-    const renderItems = () => {
+    const renderAsciiFaces = () => {
         var asciiFacesOutput = [];
         let adsBannerCount = 0;
         let adsBannerTotal = 0;
@@ -208,7 +206,7 @@ const App = () => {
 
             <Grid variety={GRID_ROW}>
                 <Fragment>
-                    {renderItems()}
+                    {renderAsciiFaces()}
                 </Fragment>
             </Grid>
 
