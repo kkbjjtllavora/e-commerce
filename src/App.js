@@ -14,6 +14,7 @@ import { GREY_B } from './constants/colors';
 import { usePromise } from './utils/promise';
 import { getAsciiFaces, MOCK_LOADING_TIME } from './utils/api';
 import { scrolledToBottom } from './utils/window';
+import { convertTimeToRelative } from './utils/date';
 import adBannerA from './assets/images/banner-ad-a.jpg';
 import adBannerB from './assets/images/banner-ad-b.jpg';
 import adBannerC from './assets/images/banner-ad-c.jpg';
@@ -156,7 +157,7 @@ const App = () => {
                                 description={`ID: ${id}`}
                                 badgeColor={badgeColor}
                                 badgeIcon="$"
-                                pillContent={createdAt}
+                                pillContent={convertTimeToRelative(createdAt)}
                                 badgeContent={price}
                             />
                         </ShadowBox>

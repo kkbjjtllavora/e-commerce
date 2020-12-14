@@ -1,6 +1,6 @@
-export const getSortOrder = (prop) => {
-    const toTimestamp = (date) => Date.parse(date) / 1000;
+import { toTimestamp } from './date';
 
+export const getSortOrder = (prop) => {
     return function (a, b) {
         let propA, propB;
 

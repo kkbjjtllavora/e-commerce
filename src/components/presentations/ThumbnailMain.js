@@ -1,5 +1,4 @@
 import { createUseStyles } from 'react-jss';
-import ReactTimeAgo from 'react-time-ago';
 import { BLACK_A, GREY_E } from '../../constants/colors';
 import { DEFAULT_FONT_SIZE } from '../../constants/styles';
 import Badge from '../common/Badge';
@@ -19,7 +18,7 @@ const useStyles = createUseStyles({
     },
 
     thumbnailSub: {
-        padding: '1rem 3rem',
+        padding: '1rem 1.5rem',
         display: 'flex',
         justifyContent: 'space-between',
         alignItems: 'center',
@@ -83,9 +82,7 @@ const ThumbnailMain = ({
                         {badgeContent}
                     </Badge>
 
-                    <Pill>
-                        <ReactTimeAgo date={pillContent} locale="en-US" />
-                    </Pill>
+                    <Pill>{pillContent}</Pill>
                 </div>
             </article>
         </a>
