@@ -14,7 +14,7 @@ const mockData = [
             'Improve your communication skills and have better conversations.',
         badgeColor: BADGE_GREEN,
         createdAt: 'Sun Nov 1 2020 07:07:13 GMT+0800 (Taipei Standard Time)',
-        price: '300.00',
+        price: '3.25',
     },
     {
         id: 2,
@@ -24,7 +24,7 @@ const mockData = [
             'Our most popular material. New lessons added every day based on current events.',
         badgeColor: BADGE_BLUE,
         createdAt: 'Wed Nov 4 2020 07:07:13 GMT+0800 (Taipei Standard Time)',
-        price: '500.00',
+        price: '4.30',
     },
     {
         id: 3,
@@ -34,7 +34,7 @@ const mockData = [
             'Increase your vocabulary and speaking skills by describing pictures.',
         badgeColor: BADGE_ORANGE,
         createdAt: 'Thu Nov 5 2020 07:07:13 GMT+0800 (Taipei Standard Time)',
-        price: '400.00',
+        price: '5.52',
     },
     {
         id: 4,
@@ -44,7 +44,7 @@ const mockData = [
             'Learn health-related vocabulary and expressions health-related issues',
         badgeColor: BADGE_RED,
         createdAt: 'Fri Nov 6 2020 07:07:13 GMT+0800 (Taipei Standard Time)',
-        price: '400.00',
+        price: '4.52',
     },
     {
         id: 5,
@@ -54,7 +54,7 @@ const mockData = [
             'Improve your communication skills and have better conversations.',
         badgeColor: BADGE_GREEN,
         createdAt: 'Mon Nov 9 2020 07:07:13 GMT+0800 (Taipei Standard Time)',
-        price: '300.00',
+        price: '4.26',
     },
     {
         id: 6,
@@ -64,7 +64,7 @@ const mockData = [
             'Our most popular material. New lessons added every day based on current events.',
         badgeColor: BADGE_BLUE,
         createdAt: 'Tue Nov 10 2020 07:07:13 GMT+0800 (Taipei Standard Time)',
-        price: '500.00',
+        price: '6.25',
     },
     {
         id: 7,
@@ -74,7 +74,7 @@ const mockData = [
             'Increase your vocabulary and speaking skills by describing pictures.',
         badgeColor: BADGE_ORANGE,
         createdAt: 'Wed Nov 11 2020 07:07:13 GMT+0800 (Taipei Standard Time)',
-        price: '400.00',
+        price: '7.85',
     },
     {
         id: 8,
@@ -84,7 +84,7 @@ const mockData = [
             'Learn health-related vocabulary and expressions health-related issues',
         badgeColor: BADGE_RED,
         createdAt: 'Thu Nov 12 2020 07:07:13 GMT+0800 (Taipei Standard Time)',
-        price: '400.00',
+        price: '1.25',
     },
     {
         id: 9,
@@ -94,7 +94,7 @@ const mockData = [
             'Improve your communication skills and have better conversations.',
         badgeColor: BADGE_GREEN,
         createdAt: 'Tue Nov 17 2020 07:07:13 GMT+0800 (Taipei Standard Time)',
-        price: '300.00',
+        price: '8.52',
     },
     {
         id: 10,
@@ -104,7 +104,7 @@ const mockData = [
             'Our most popular material. New lessons added every day based on current events.',
         badgeColor: BADGE_BLUE,
         createdAt: 'Fri Nov 20 2020 07:07:13 GMT+0800 (Taipei Standard Time)',
-        price: '500.00',
+        price: '9.25',
     },
     {
         id: 11,
@@ -114,7 +114,7 @@ const mockData = [
             'Increase your vocabulary and speaking skills by describing pictures.',
         badgeColor: BADGE_ORANGE,
         createdAt: 'Sat Nov 21 2020 07:07:13 GMT+0800 (Taipei Standard Time)',
-        price: '400.00',
+        price: '4.20',
     },
     {
         id: 12,
@@ -124,7 +124,7 @@ const mockData = [
             'Learn health-related vocabulary and expressions health-related issues',
         badgeColor: BADGE_RED,
         createdAt: 'Sun Nov 22 2020 07:07:13 GMT+0800 (Taipei Standard Time)',
-        price: '400.00',
+        price: '5.25',
     },
     {
         id: 13,
@@ -134,7 +134,7 @@ const mockData = [
             'Improve your communication skills and have better conversations.',
         badgeColor: BADGE_GREEN,
         createdAt: 'Mon Nov 23 2020 07:07:13 GMT+0800 (Taipei Standard Time)',
-        price: '300.00',
+        price: '6.25',
     },
     {
         id: 14,
@@ -144,7 +144,7 @@ const mockData = [
             'Our most popular material. New lessons added every day based on current events.',
         badgeColor: BADGE_BLUE,
         createdAt: 'Tue Nov 24 2020 07:07:13 GMT+0800 (Taipei Standard Time)',
-        price: '500.00',
+        price: '1.63',
     },
     {
         id: 15,
@@ -154,7 +154,7 @@ const mockData = [
             'Increase your vocabulary and speaking skills by describing pictures.',
         badgeColor: BADGE_ORANGE,
         createdAt: 'Wed Nov 25 2020 07:07:13 GMT+0800 (Taipei Standard Time)',
-        price: '400.00',
+        price: '5.23',
     },
     {
         id: 16,
@@ -164,7 +164,7 @@ const mockData = [
             'Learn health-related vocabulary and expressions health-related issues',
         badgeColor: BADGE_RED,
         createdAt: 'Thu Nov 26 2020 07:07:13 GMT+0800 (Taipei Standard Time)',
-        price: '400.00',
+        price: '4.36',
     },
     {
         id: 17,
@@ -174,7 +174,7 @@ const mockData = [
             'Improve your communication skills and have better conversations.',
         badgeColor: BADGE_GREEN,
         createdAt: 'Sun Nov 29 2020 07:07:13 GMT+0800 (Taipei Standard Time)',
-        price: '300.00',
+        price: '7.25',
     },
     {
         id: 18,
@@ -184,7 +184,7 @@ const mockData = [
             'Our most popular material. New lessons added every day based on current events.',
         badgeColor: BADGE_BLUE,
         createdAt: 'Tue Dec 1 2020 07:07:13 GMT+0800 (Taipei Standard Time)',
-        price: '500.00',
+        price: '6.35',
     },
     {
         id: 19,
@@ -194,7 +194,7 @@ const mockData = [
             'Increase your vocabulary and speaking skills by describing pictures.',
         badgeColor: BADGE_ORANGE,
         createdAt: 'Wed Dec 2 2020 07:07:13 GMT+0800 (Taipei Standard Time)',
-        price: '400.00',
+        price: '1.25',
     },
     {
         id: 20,
@@ -204,7 +204,7 @@ const mockData = [
             'Learn health-related vocabulary and expressions health-related issues',
         badgeColor: BADGE_RED,
         createdAt: 'Thu Dec 3 2020 07:07:13 GMT+0800 (Taipei Standard Time)',
-        price: '400.00',
+        price: '3.69',
     },
     {
         id: 21,
@@ -214,7 +214,7 @@ const mockData = [
             'Improve your communication skills and have better conversations.',
         badgeColor: BADGE_GREEN,
         createdAt: 'Fri Dec 4 2020 07:07:13 GMT+0800 (Taipei Standard Time)',
-        price: '300.00',
+        price: '8.52',
     },
     {
         id: 22,
@@ -224,7 +224,7 @@ const mockData = [
             'Our most popular material. New lessons added every day based on current events.',
         badgeColor: BADGE_BLUE,
         createdAt: 'Sun Dec 6 2020 07:07:13 GMT+0800 (Taipei Standard Time)',
-        price: '500.00',
+        price: '5.63',
     },
     {
         id: 23,
@@ -234,7 +234,7 @@ const mockData = [
             'Increase your vocabulary and speaking skills by describing pictures.',
         badgeColor: BADGE_ORANGE,
         createdAt: 'Wed Dec 9 2020 07:07:13 GMT+0800 (Taipei Standard Time)',
-        price: '400.00',
+        price: '7.56',
     },
     {
         id: 24,
@@ -244,7 +244,7 @@ const mockData = [
             'Learn health-related vocabulary and expressions health-related issues',
         badgeColor: BADGE_RED,
         createdAt: 'Thu Dec 10 2020 07:07:13 GMT+0800 (Taipei Standard Time)',
-        price: '400.00',
+        price: '8.25',
     },
     {
         id: 25,
@@ -254,7 +254,7 @@ const mockData = [
             'Improve your communication skills and have better conversations.',
         badgeColor: BADGE_GREEN,
         createdAt: 'Sun Nov 1 2020 07:07:13 GMT+0800 (Taipei Standard Time)',
-        price: '300.00',
+        price: '9.23',
     },
     {
         id: 26,
@@ -264,7 +264,7 @@ const mockData = [
             'Our most popular material. New lessons added every day based on current events.',
         badgeColor: BADGE_BLUE,
         createdAt: 'Wed Nov 4 2020 07:07:13 GMT+0800 (Taipei Standard Time)',
-        price: '500.00',
+        price: '2.03',
     },
     {
         id: 27,
@@ -274,7 +274,7 @@ const mockData = [
             'Increase your vocabulary and speaking skills by describing pictures.',
         badgeColor: BADGE_ORANGE,
         createdAt: 'Thu Nov 5 2020 07:07:13 GMT+0800 (Taipei Standard Time)',
-        price: '400.00',
+        price: '4.58',
     },
     {
         id: 28,
@@ -284,7 +284,7 @@ const mockData = [
             'Learn health-related vocabulary and expressions health-related issues',
         badgeColor: BADGE_RED,
         createdAt: 'Fri Nov 6 2020 07:07:13 GMT+0800 (Taipei Standard Time)',
-        price: '400.00',
+        price: '6.25',
     },
     {
         id: 29,
@@ -294,7 +294,7 @@ const mockData = [
             'Improve your communication skills and have better conversations.',
         badgeColor: BADGE_GREEN,
         createdAt: 'Mon Nov 9 2020 07:07:13 GMT+0800 (Taipei Standard Time)',
-        price: '300.00',
+        price: '7.58',
     },
     {
         id: 30,
@@ -304,7 +304,7 @@ const mockData = [
             'Our most popular material. New lessons added every day based on current events.',
         badgeColor: BADGE_BLUE,
         createdAt: 'Tue Nov 10 2020 07:07:13 GMT+0800 (Taipei Standard Time)',
-        price: '500.00',
+        price: '7.56',
     },
     {
         id: 31,
@@ -314,7 +314,7 @@ const mockData = [
             'Increase your vocabulary and speaking skills by describing pictures.',
         badgeColor: BADGE_ORANGE,
         createdAt: 'Wed Nov 11 2020 07:07:13 GMT+0800 (Taipei Standard Time)',
-        price: '400.00',
+        price: '9.36',
     },
     {
         id: 32,
@@ -324,7 +324,7 @@ const mockData = [
             'Learn health-related vocabulary and expressions health-related issues',
         badgeColor: BADGE_RED,
         createdAt: 'Thu Nov 12 2020 07:07:13 GMT+0800 (Taipei Standard Time)',
-        price: '400.00',
+        price: '4.58',
     },
     {
         id: 33,
@@ -334,7 +334,7 @@ const mockData = [
             'Improve your communication skills and have better conversations.',
         badgeColor: BADGE_GREEN,
         createdAt: 'Tue Nov 17 2020 07:07:13 GMT+0800 (Taipei Standard Time)',
-        price: '300.00',
+        price: '1.25',
     },
     {
         id: 34,
@@ -344,7 +344,7 @@ const mockData = [
             'Our most popular material. New lessons added every day based on current events.',
         badgeColor: BADGE_BLUE,
         createdAt: 'Fri Nov 20 2020 07:07:13 GMT+0800 (Taipei Standard Time)',
-        price: '500.00',
+        price: '8.85',
     },
     {
         id: 35,
@@ -354,7 +354,7 @@ const mockData = [
             'Increase your vocabulary and speaking skills by describing pictures.',
         badgeColor: BADGE_ORANGE,
         createdAt: 'Mon Nov 2 2020 07:07:13 GMT+0800 (Taipei Standard Time)',
-        price: '400.00',
+        price: '9.99',
     },
     {
         id: 36,
@@ -364,7 +364,7 @@ const mockData = [
             'Learn health-related vocabulary and expressions health-related issues',
         badgeColor: BADGE_RED,
         createdAt: 'Tue Nov 3 2020 07:07:13 GMT+0800 (Taipei Standard Time)',
-        price: '400.00',
+        price: '7.58',
     },
     {
         id: 37,
@@ -384,7 +384,7 @@ const mockData = [
             'Our most popular material. New lessons added every day based on current events.',
         badgeColor: BADGE_BLUE,
         createdAt: 'Sat Nov 8 2020 07:07:13 GMT+0800 (Taipei Standard Time)',
-        price: '500.00',
+        price: '5.55',
     },
     {
         id: 39,
@@ -394,7 +394,7 @@ const mockData = [
             'Increase your vocabulary and speaking skills by describing pictures.',
         badgeColor: BADGE_ORANGE,
         createdAt: 'Mon Nov 9 2020 07:07:13 GMT+0800 (Taipei Standard Time)',
-        price: '400.00',
+        price: '6.25',
     },
     {
         id: 40,
@@ -404,7 +404,7 @@ const mockData = [
             'Learn health-related vocabulary and expressions health-related issues',
         badgeColor: BADGE_RED,
         createdAt: 'Tue Nov 10 2020 07:07:13 GMT+0800 (Taipei Standard Time)',
-        price: '400.00',
+        price: '7.45',
     },
     {
         id: 41,
@@ -414,7 +414,7 @@ const mockData = [
             'Improve your communication skills and have better conversations.',
         badgeColor: BADGE_GREEN,
         createdAt: 'Wed Nov 11 2020 07:07:13 GMT+0800 (Taipei Standard Time)',
-        price: '300.00',
+        price: '7.85',
     },
     {
         id: 42,
@@ -424,7 +424,7 @@ const mockData = [
             'Our most popular material. New lessons added every day based on current events.',
         badgeColor: BADGE_BLUE,
         createdAt: 'Sat Nov 14 2020 07:07:13 GMT+0800 (Taipei Standard Time)',
-        price: '500.00',
+        price: '9.65',
     },
     {
         id: 43,
@@ -434,7 +434,7 @@ const mockData = [
             'Increase your vocabulary and speaking skills by describing pictures.',
         badgeColor: BADGE_ORANGE,
         createdAt: 'Sun Nov 15 2020 07:07:13 GMT+0800 (Taipei Standard Time)',
-        price: '400.00',
+        price: '6.23',
     },
     {
         id: 44,
@@ -444,7 +444,7 @@ const mockData = [
             'Learn health-related vocabulary and expressions health-related issues',
         badgeColor: BADGE_RED,
         createdAt: 'Mon Nov 16 2020 07:07:13 GMT+0800 (Taipei Standard Time)',
-        price: '400.00',
+        price: '8.25',
     },
     {
         id: 45,
@@ -454,7 +454,7 @@ const mockData = [
             'Improve your communication skills and have better conversations.',
         badgeColor: BADGE_GREEN,
         createdAt: 'Wed Nov 18 2020 07:07:13 GMT+0800 (Taipei Standard Time)',
-        price: '300.00',
+        price: '3.36',
     },
     {
         id: 46,
@@ -464,7 +464,7 @@ const mockData = [
             'Our most popular material. New lessons added every day based on current events.',
         badgeColor: BADGE_BLUE,
         createdAt: 'Mon Nov 23 2020 07:07:13 GMT+0800 (Taipei Standard Time)',
-        price: '500.00',
+        price: '6.89',
     },
     {
         id: 47,
@@ -474,7 +474,7 @@ const mockData = [
             'Increase your vocabulary and speaking skills by describing pictures.',
         badgeColor: BADGE_ORANGE,
         createdAt: 'Thu Nov 26 2020 07:07:13 GMT+0800 (Taipei Standard Time)',
-        price: '400.00',
+        price: '7.85',
     },
     {
         id: 48,
@@ -484,7 +484,7 @@ const mockData = [
             'Learn health-related vocabulary and expressions health-related issues',
         badgeColor: BADGE_RED,
         createdAt: 'Sat Nov 28 2020 07:07:13 GMT+0800 (Taipei Standard Time)',
-        price: '400.00',
+        price: '4.25',
     },
     {
         id: 49,
@@ -494,7 +494,7 @@ const mockData = [
             'Improve your communication skills and have better conversations.',
         badgeColor: BADGE_GREEN,
         createdAt: 'Sun Nov 29 2020 07:07:13 GMT+0800 (Taipei Standard Time)',
-        price: '300.00',
+        price: '1.25',
     },
     {
         id: 50,
@@ -504,7 +504,7 @@ const mockData = [
             'Our most popular material. New lessons added every day based on current events.',
         badgeColor: BADGE_BLUE,
         createdAt: 'Tue Dec 1 2020 07:07:13 GMT+0800 (Taipei Standard Time)',
-        price: '500.00',
+        price: '6.23',
     },
     {
         id: 51,
@@ -514,7 +514,7 @@ const mockData = [
             'Increase your vocabulary and speaking skills by describing pictures.',
         badgeColor: BADGE_ORANGE,
         createdAt: 'Wed Dec 2 2020 07:07:13 GMT+0800 (Taipei Standard Time)',
-        price: '400.00',
+        price: '8.25',
     },
     {
         id: 52,
@@ -524,7 +524,7 @@ const mockData = [
             'Learn health-related vocabulary and expressions health-related issues',
         badgeColor: BADGE_RED,
         createdAt: 'Thu Dec 3 2020 07:07:13 GMT+0800 (Taipei Standard Time)',
-        price: '400.00',
+        price: '6.23',
     },
     {
         id: 53,
@@ -534,7 +534,7 @@ const mockData = [
             'Improve your communication skills and have better conversations.',
         badgeColor: BADGE_GREEN,
         createdAt: 'Sat Dec 5 2020 07:07:13 GMT+0800 (Taipei Standard Time)',
-        price: '300.00',
+        price: '4.25',
     },
     {
         id: 54,
@@ -544,7 +544,7 @@ const mockData = [
             'Our most popular material. New lessons added every day based on current events.',
         badgeColor: BADGE_BLUE,
         createdAt: 'Tue Dec 8 2020 07:07:13 GMT+0800 (Taipei Standard Time)',
-        price: '500.00',
+        price: '1.25',
     },
     {
         id: 55,
@@ -554,7 +554,7 @@ const mockData = [
             'Increase your vocabulary and speaking skills by describing pictures.',
         badgeColor: BADGE_ORANGE,
         createdAt: 'Wed Dec 9 2020 07:07:13 GMT+0800 (Taipei Standard Time)',
-        price: '400.00',
+        price: '2.58',
     },
     {
         id: 56,
@@ -564,7 +564,7 @@ const mockData = [
             'Learn health-related vocabulary and expressions health-related issues',
         badgeColor: BADGE_RED,
         createdAt: 'Thu Dec 10 2020 07:07:13 GMT+0800 (Taipei Standard Time)',
-        price: '400.00',
+        price: '4.55',
     },
     {
         id: 57,
@@ -574,7 +574,7 @@ const mockData = [
             'Improve your communication skills and have better conversations.',
         badgeColor: BADGE_GREEN,
         createdAt: 'Fri Dec 11 2020 07:07:13 GMT+0800 (Taipei Standard Time)',
-        price: '300.00',
+        price: '3.36',
     },
     {
         id: 58,
@@ -584,7 +584,7 @@ const mockData = [
             'Our most popular material. New lessons added every day based on current events.',
         badgeColor: BADGE_BLUE,
         createdAt: 'Sun Dec 13 2020 07:07:13 GMT+0800 (Taipei Standard Time)',
-        price: '500.00',
+        price: '3.56',
     },
     {
         id: 59,
@@ -594,7 +594,7 @@ const mockData = [
             'Increase your vocabulary and speaking skills by describing pictures.',
         badgeColor: BADGE_ORANGE,
         createdAt: 'Mon Dec 14 2020 07:07:13 GMT+0800 (Taipei Standard Time)',
-        price: '400.00',
+        price: '7.58',
     },
     {
         id: 60,
@@ -604,7 +604,7 @@ const mockData = [
             'Learn health-related vocabulary and expressions health-related issues',
         badgeColor: BADGE_RED,
         createdAt: 'Sat Nov 28 2020 07:07:13 GMT+0800 (Taipei Standard Time)',
-        price: '400.00',
+        price: '4.25',
     },
     {
         id: 61,
@@ -614,7 +614,7 @@ const mockData = [
             'Improve your communication skills and have better conversations.',
         badgeColor: BADGE_GREEN,
         createdAt: 'Sun Nov 29 2020 07:07:13 GMT+0800 (Taipei Standard Time)',
-        price: '300.00',
+        price: '4.25',
     },
     {
         id: 62,
@@ -624,7 +624,7 @@ const mockData = [
             'Our most popular material. New lessons added every day based on current events.',
         badgeColor: BADGE_BLUE,
         createdAt: 'Wed Dec 2 2020 07:07:13 GMT+0800 (Taipei Standard Time)',
-        price: '500.00',
+        price: '6.36',
     },
     {
         id: 63,
@@ -634,7 +634,7 @@ const mockData = [
             'Increase your vocabulary and speaking skills by describing pictures.',
         badgeColor: BADGE_ORANGE,
         createdAt: 'Fri Dec 4 2020 07:07:13 GMT+0800 (Taipei Standard Time)',
-        price: '400.00',
+        price: '4.58',
     },
     {
         id: 64,
@@ -644,7 +644,7 @@ const mockData = [
             'Learn health-related vocabulary and expressions health-related issues',
         badgeColor: BADGE_RED,
         createdAt: 'Tue Dec 8 2020 07:07:13 GMT+0800 (Taipei Standard Time)',
-        price: '400.00',
+        price: '1.25',
     },
     {
         id: 65,
@@ -654,7 +654,7 @@ const mockData = [
             'Improve your communication skills and have better conversations.',
         badgeColor: BADGE_GREEN,
         createdAt: 'Wed Dec 9 2020 07:07:13 GMT+0800 (Taipei Standard Time)',
-        price: '300.00',
+        price: '8.56',
     },
     {
         id: 66,
@@ -664,7 +664,7 @@ const mockData = [
             'Our most popular material. New lessons added every day based on current events.',
         badgeColor: BADGE_BLUE,
         createdAt: 'Wed Dec 10 2020 07:07:13 GMT+0800 (Taipei Standard Time)',
-        price: '500.00',
+        price: '2.30',
     },
     {
         id: 67,
@@ -674,7 +674,7 @@ const mockData = [
             'Increase your vocabulary and speaking skills by describing pictures.',
         badgeColor: BADGE_ORANGE,
         createdAt: 'Sat Dec 12 2020 07:07:13 GMT+0800 (Taipei Standard Time)',
-        price: '400.00',
+        price: '4.52',
     },
     {
         id: 68,
@@ -684,7 +684,7 @@ const mockData = [
             'Learn health-related vocabulary and expressions health-related issues',
         badgeColor: BADGE_RED,
         createdAt: 'Sun Dec 13 2020 07:07:13 GMT+0800 (Taipei Standard Time)',
-        price: '400.00',
+        price: '5.23',
     },
 ];
 

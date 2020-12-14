@@ -13,6 +13,9 @@ export const getSortOrder = (prop) => {
             } else if (propA > propB) {
                 return -1;
             }
+        } else if (prop === 'price') {
+            propA = +a[prop];
+            propB = +b[prop];
         } else {
             propA = a[prop];
             propB = b[prop];
